@@ -30,8 +30,12 @@ public class HeltBlankBot implements IBot {
         return calculateWinningMove(state, moveTimeMs);
     }
     private IMove calculateWinningMove(IGameState state, int maxTimeMs) {
+        //List all possible moves that the bot can play this turn
         List<IMove> moves = state.getField().getAvailableMoves();
+        //Variable to store the best move found during evaluation
         IMove bestMove = null;
+        //Initial value for comparing moves: We want teh highest score
+        //Interger.MIN_VALUE ensures that any realistic move will be better
         int bestValue = Integer.MIN_VALUE;
 
         for (IMove move : moves) {
