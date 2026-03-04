@@ -296,6 +296,8 @@ public class HeltBlankBot implements IBot {
             }
 
             //check anti diagonal
+            //The anti-diagonal runs from top-right to bottom-left in a matrix.
+            //In a 3×3 grid, the anti-diagonal positions are: (0,2), (1,1), (2,0)
             if (localX + localY == 3 - 1) {
                 int less = 0;
                 for (int i = startX; i < startX + 3; i++) {
