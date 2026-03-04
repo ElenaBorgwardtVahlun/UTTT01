@@ -28,6 +28,7 @@ public class ExampleSneakyBot implements IBot {
     public IMove doMove(IGameState state) {
         return calculateWinningMove(state, moveTimeMs);
     }
+
     // Plays single games until it wins and returns the first move for that. If iterations reached with no clear win, just return random valid move
     private IMove calculateWinningMove(IGameState state, int maxTimeMs){
         long time = System.currentTimeMillis();
@@ -273,7 +274,9 @@ public class ExampleSneakyBot implements IBot {
         }
 
         private void updateMacroboard(IMove move) {
+
             String[][] macroBoard = currentState.getField().getMacroboard();
+
             for (int i = 0; i < macroBoard.length; i++)
                 for (int k = 0; k < macroBoard[i].length; k++) {
                     if (macroBoard[i][k].equals(IField.AVAILABLE_FIELD))
