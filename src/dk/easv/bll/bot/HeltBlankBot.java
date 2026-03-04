@@ -75,7 +75,11 @@ public class HeltBlankBot implements IBot {
             return evaluateBoard(simulator.getCurrentState());
         }
 
+        //Get all possible legal moves from the current board state
         List<IMove> moves = simulator.getCurrentState().getField().getAvailableMoves();
+        //Initialize the best value for comparison:
+        // - If we are the maximizing ((Minimax)bot) player, start with the smallest possible value
+        // - If we are the minimizing player (opponent), start with the largest possible player
         int bestValue = isMaximizingPlayer ? Integer.MIN_VALUE : Integer.MAX_VALUE;
 
         for (IMove move : moves) {
