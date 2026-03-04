@@ -60,7 +60,7 @@ public class HeltBlankBot implements IBot {
             }
         }
 
-        // fallback hvis der ikke findes moves (burde ikke ske)
+        // fallback safety check in case no best move was found (Should normally not happen)
         if (bestMove == null) {
             Random rand = new Random();
             bestMove = moves.get(rand.nextInt(moves.size()));
@@ -69,7 +69,9 @@ public class HeltBlankBot implements IBot {
         return bestMove;
     }
     private int minimax(GameSimulator simulator, int depth, boolean isMaximizingPlayer) {
+        //Stop conditions: if the game is finished or we reached maximum search depth
         if (simulator.getGameOver() != GameOverState.Active || depth == 0) {
+            //return a heuristic (look, count, return) evaluation of the current board state
             return evaluateBoard(simulator.getCurrentState());
         }
 
