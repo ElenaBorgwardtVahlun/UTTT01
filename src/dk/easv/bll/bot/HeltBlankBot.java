@@ -48,9 +48,14 @@ public class HeltBlankBot implements IBot {
             //Apply the move in the simulated game state
             sim.updateGame(move);
 
-            int moveValue = minimax(sim, 2, false); // depth 2, modstander spiller som minimizer
+            //Evaluate the move and keep it if it is better than the previous one
+            //Evaluate the simulated move using Minimax algorithm
+            int moveValue = minimax(sim, 2, false); // depth 2, opponent plays as minimizer
+            //If this move has a better score than the previous best move
             if (moveValue > bestValue) {
+                //Update the best score found so far
                 bestValue = moveValue;
+                //Store this move as the current best move
                 bestMove = move;
             }
         }
