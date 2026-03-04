@@ -34,13 +34,18 @@ public class HeltBlankBot implements IBot {
         List<IMove> moves = state.getField().getAvailableMoves();
         //Variable to store the best move found during evaluation
         IMove bestMove = null;
-        //Initial value for comparing moves: We want teh highest score
-        //Interger.MIN_VALUE ensures that any realistic move will be better
+        //Initial value for comparing moves: we want the highest score
+        //Integer.MIN_VALUE ensures that any realistic move will be better
         int bestValue = Integer.MIN_VALUE;
 
+        //Test this move in a simulated version of the game
+        //Loop through all possible legal moves
         for (IMove move : moves) {
+            //Create a copy of the current game state for simulation
             GameSimulator sim = createSimulator(state);
+            //Set the current player in the simulator (0 or 1)
             sim.setCurrentPlayer(state.getMoveNumber() % 2);
+            //Apply the move in the simulated game state
             sim.updateGame(move);
 
             int moveValue = minimax(sim, 2, false); // depth 2, modstander spiller som minimizer
